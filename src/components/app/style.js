@@ -64,19 +64,6 @@ export default component => styled(component)`
       &.issues {
         text-align: center;
       }
-
-      &.metrics {
-        div {
-          align-items: center;
-          display: flex;
-          justify-content: center;
-          padding: 0 2rem;
-        }
-
-        .MuiBadge-root:not(:first-of-type) {
-          margin-left: 2rem;
-        }
-      }
     }
   }
 `;

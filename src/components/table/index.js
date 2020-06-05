@@ -1,9 +1,17 @@
-import { arrayOf, elementType, node, object, shape, string } from 'prop-types';
+import {
+  arrayOf,
+  elementType,
+  func,
+  node,
+  object,
+  shape,
+  string,
+} from 'prop-types';
 import React, { createElement, useCallback } from 'react';
 
 import withStyle from './style';
 
-export const Table = ({ className, columns, getRowId, rows }) => {
+export const Table = ({ className, columns, rows, getRowId }) => {
   const renderHeaderColumn = useCallback(
     ({ name, label }) => (
       <th key={name} className={name}>
@@ -49,6 +57,7 @@ Table.propTypes = {
     }).isRequired
   ),
   rows: arrayOf(object),
+  getRowId: func.isRequired,
 };
 
 Table.defaultProps = {
