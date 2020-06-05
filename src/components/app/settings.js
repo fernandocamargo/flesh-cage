@@ -18,12 +18,7 @@ export const columns = [
   {
     name: 'id',
     label: 'ID',
-    render: ({ id }) =>
-      id || (
-        <Typography variant="body2" color="textSecondary" component="span">
-          {id}
-        </Typography>
-      ),
+    render: ({ id }) => id,
   },
   {
     name: 'summary',
@@ -54,9 +49,7 @@ export const columns = [
           subheader={<em>Created at: {date(created_at).format()}</em>}
         />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="div">
-            <Markdown source={description} renderers={renderers} />
-          </Typography>
+          <Markdown source={description} renderers={renderers} />
         </CardContent>
       </Card>
     ),
