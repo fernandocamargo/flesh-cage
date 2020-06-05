@@ -1,6 +1,7 @@
-import React, { createElement, useCallback } from "react";
+import { arrayOf, elementType, node, object, shape, string } from 'prop-types';
+import React, { createElement, useCallback } from 'react';
 
-import withStyle from "./style";
+import withStyle from './style';
 
 export const Table = ({ className, columns, getRowId, rows }) => {
   const renderHeaderColumn = useCallback(
@@ -38,8 +39,21 @@ export const Table = ({ className, columns, getRowId, rows }) => {
   );
 };
 
-Table.propTypes = {};
+Table.propTypes = {
+  className: string.isRequired,
+  columns: arrayOf(
+    shape({
+      name: string.isRequired,
+      label: node,
+      render: elementType.isRequired,
+    }).isRequired
+  ),
+  rows: arrayOf(object),
+};
 
-Table.defaultProps = {};
+Table.defaultProps = {
+  columns: [],
+  rows: [],
+};
 
 export default withStyle(Table);
