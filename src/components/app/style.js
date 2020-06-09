@@ -19,11 +19,15 @@ export default component => styled(component)`
       font-size: ${({
         theme: {
           typography: { body2 },
-          palette: {
-            text: { secondary },
+        },
+      }) => ({ ...body2, color: '#000' })};
+      transition: ${({
+        theme: {
+          transitions: {
+            easing: { easeInOut },
           },
         },
-      }) => ({ ...body2, color: secondary })};
+      }) => `background-color 0.25s ${easeInOut}, color 0.25s ${easeInOut}`};
 
       &:nth-of-type(1) {
         background-color: #f8f9fa;
@@ -47,14 +51,17 @@ export default component => styled(component)`
 
       &:nth-of-type(6) {
         background-color: #6c757d;
+        color: #fff;
       }
 
       &:nth-of-type(7) {
         background-color: #495057;
+        color: #fff;
       }
 
       &:nth-of-type(8) {
         background-color: #343a40;
+        color: #fff;
       }
 
       &.language,
@@ -63,6 +70,46 @@ export default component => styled(component)`
       &.forks,
       &.issues {
         text-align: center;
+      }
+    }
+
+    tr:hover {
+      td {
+        &:not(:nth-of-type(1)) {
+          color: #fff;
+        }
+
+        &:nth-of-type(1) {
+          background-color: #e0aaff;
+        }
+
+        &:nth-of-type(2) {
+          background-color: #c77dff;
+        }
+
+        &:nth-of-type(3) {
+          background-color: #9d4edd;
+        }
+
+        &:nth-of-type(4) {
+          background-color: #7b2cbf;
+        }
+
+        &:nth-of-type(5) {
+          background-color: #5a189a;
+        }
+
+        &:nth-of-type(6) {
+          background-color: #3c096c;
+        }
+
+        &:nth-of-type(7) {
+          background-color: #240046;
+        }
+
+        &:nth-of-type(8) {
+          background-color: #10002b;
+        }
       }
     }
   }

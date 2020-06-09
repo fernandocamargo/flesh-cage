@@ -1,14 +1,14 @@
-import { string } from "prop-types";
-import React from "react";
+import { string } from 'prop-types';
+import React from 'react';
 
-import { Pagination, Search, Table } from "components";
+import { useGithub } from 'hooks';
+import { Pagination, Search, Table } from 'components';
 
-import { useRepos } from "./hooks";
-import { columns, getRowId } from "./settings";
-import withStyle from "./style";
+import { columns, getRowId } from './settings';
+import withStyle from './style';
 
 export const App = ({ className }) => {
-  const { loading, repos, fetch } = useRepos();
+  const { loading, repos, fetch } = useGithub();
 
   return (
     <div className={className}>
@@ -25,7 +25,7 @@ export const App = ({ className }) => {
 };
 
 App.propTypes = {
-  className: string.isRequired
+  className: string.isRequired,
 };
 
 App.defaultProps = {};

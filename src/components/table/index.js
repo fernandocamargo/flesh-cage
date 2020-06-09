@@ -4,18 +4,23 @@ import {
   func,
   node,
   object,
+  oneOfType,
   shape,
   string,
 } from 'prop-types';
-import React, { createElement, useCallback } from 'react';
+import React, { createElement, Fragment, useCallback } from 'react';
 
+import { isNode } from 'helpers/rendering';
+
+import { useTable } from './hooks';
 import withStyle from './style';
 
 export const Table = ({ className, columns, rows, getRowId }) => {
+  const table = useTable({});
   const renderHeaderColumn = useCallback(
-    ({ name, label }) => (
+    ({ name, header }) => (
       <th key={name} className={name}>
-        {label}
+        {isNode(header) ? header : createElement(header)}
       </th>
     ),
     []
@@ -26,9 +31,9 @@ export const Table = ({ className, columns, rows, getRowId }) => {
 
       return (
         <tr key={key}>
-          {columns.map(({ name, render }) => (
+          {columns.map(({ name, body }) => (
             <td key={name} className={name}>
-              {createElement(render, row)}
+              {isNode(body) ? body : createElement(body, row)}
             </td>
           ))}
         </tr>
@@ -38,12 +43,15 @@ export const Table = ({ className, columns, rows, getRowId }) => {
   );
 
   return (
-    <table className={className}>
-      <thead>
-        <tr>{columns.map(renderHeaderColumn)}</tr>
-      </thead>
-      <tbody>{rows.map(renderRow)}</tbody>
-    </table>
+    <Fragment>
+      <pre>{JSON.stringify(table, null, 2)}</pre>
+      <table className={className}>
+        <thead>
+          <tr>{columns.map(renderHeaderColumn)}</tr>
+        </thead>
+        <tbody>{rows.map(renderRow)}</tbody>
+      </table>
+    </Fragment>
   );
 };
 
@@ -52,8 +60,8 @@ Table.propTypes = {
   columns: arrayOf(
     shape({
       name: string.isRequired,
-      label: node,
-      render: elementType.isRequired,
+      header: oneOfType([node, elementType]),
+      body: oneOfType([node, elementType]),
     }).isRequired
   ),
   rows: arrayOf(object),

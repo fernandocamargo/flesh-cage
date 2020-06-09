@@ -15,7 +15,7 @@ const getPaginationFrom = ({ headers }) =>
       .reduce(parse, {})
   );
 
-export const useRepos = () => {
+export default () => {
   const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);

@@ -1,3 +1,6 @@
+import React from 'react';
+
+import { Sorter } from 'components';
 import {
   Forks,
   ID,
@@ -12,43 +15,43 @@ import {
 export const columns = [
   {
     name: 'id',
-    label: 'ID',
-    render: ID,
+    header: 'ID',
+    body: ID,
   },
   {
     name: 'summary',
-    label: 'Summary',
-    render: Summary,
+    header: () => 'Summary',
+    body: Summary,
   },
   {
     name: 'language',
-    label: 'Language',
-    render: Language,
+    header: 'Language',
+    body: Language,
   },
   {
     name: 'updated',
-    label: 'Last update',
-    render: Updated,
+    header: () => <Sorter>Last update</Sorter>,
+    body: Updated,
   },
   {
     name: 'stars',
-    label: 'Stars',
-    render: Stars,
+    header: () => <Sorter>Stars</Sorter>,
+    body: Stars,
   },
   {
     name: 'forks',
-    label: 'Forks',
-    render: Forks,
+    header: () => <Sorter>Forks</Sorter>,
+    body: Forks,
   },
   {
     name: 'issues',
-    label: 'Issues',
-    render: Issues,
+    header: 'Issues',
+    body: Issues,
   },
   {
     name: 'metrics',
-    label: 'Other metrics',
-    render: Metrics,
+    header: 'Other metrics',
+    body: Metrics,
   },
 ];
 
