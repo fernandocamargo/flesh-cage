@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Table } from 'components';
+import Table from 'components/table';
 
 export default component => styled(component)`
   ${Table} {
